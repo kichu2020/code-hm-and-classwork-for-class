@@ -1,0 +1,176 @@
+#numbers guess
+numbers_random = {"1","2","3","4","5","6","7","8","9","10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"}
+new_number = int(numbers_random.pop())
+number_real = new_number
+
+lives = 5
+while (lives <= 5) and (lives>0):
+    Number = int(input("Please enter your number:   "))
+    if Number != number_real:
+        lives -= 1
+        print("That is not the number!")
+        print(f'You have {lives} lives remaining')
+    elif Number == number_real:
+        print("That's the number, You win!")
+        print("You get 10 points!")
+        break
+if lives == 0:
+    print(f"The number was {number_real}")
+    print(f"You loose 10 points")
+
+
+#fan
+
+request = input("Would you like to turn fan (on/off/quit)   ")
+if (request == "on" ) or ((request == "ON" )):
+    status = "on"
+    print(f"fan is {status}")
+elif (request == "off" ) or ((request == "OFF" )):
+    status = "off"
+    print(f"fan is {status}")
+elif ((request == "quit" ) or (request == "Quit" )):
+    status = "quit"
+    print(f"fan is {status}")
+elif (request != "on" ) and ((request != "ON" )) and (request != "off" ) and ((request != "OFF" )) and ((request != "quit" ) and (request != "Quit" )):
+    status = "noe"
+    print("Hi,You have typed random so we quit on you")
+    quit()
+while True:
+    s_request = input("Would you like to turn fan (on/off/quit)   ")
+    if ((s_request != "off" and s_request != "OFF") and (s_request != "ON" and s_request != "on") and (s_request != "quit" and s_request != "Quit")):
+        break
+    elif s_request == status:
+        print(f'fan is already {status}')
+    elif (s_request != status):
+        print(f'fan is {s_request}')
+        status = s_request
+print("Hi,You have typed random so we quit on you")
+
+#numbersplit
+
+number_split = str(input("Please enter your number:   "))
+
+NO = ""
+
+zeeros_end = len(number_split) - 1
+for i in number_split:
+    if i == "0":
+        zeeros_end -= 1
+        continue
+
+    final = (i + str(zeeros_end * str(0))) + "+"
+    zeeros_end -= 1
+    NO += final
+print(NO[0:-1])
+
+
+
+#number writer
+num_1 = "1"
+num_2 = "2"
+num_3 = "3"
+num_4 = "4"
+num_5 = "5"
+num_6 = "6"
+num_7 = "7"
+num_8 = "8"
+num_9 = "9"
+num_10 = "10"
+number = str(input("Enter our number:   "))
+def number_write():
+    if (number == "one") or (number == "ONE") or (number == "One"):
+        print(num_1)
+    if (number == "zero") or (number == "ZERO") or (number == "Zero"):
+        print("0")
+    elif (number == "two") or (number == "TWO") or (number == "Two"):
+        print(num_2)
+    elif (number == "Three") or (number == "three") or (number == "THREE"):
+        print(num_3)
+    elif (number == "FOUR") or (number == "FOur") or (number == "four"):
+        print(num_4)
+    elif (number == "FIVE") or (number == "Five") or (number == "five"):
+        print(num_5)
+    elif (number == "six") or (number == "SIX") or (number == "SIx"):
+        print(num_6)
+    elif (number == "seven") or (number == "SEVEN") or (number == "SEven"):
+        print(num_7)
+    elif (number == "eight") or (number == "EIGHT") or (number == "EIght"):
+        print(num_8)
+    elif (number == "nine") or (number == "NINE") or (number == "NIne"):
+        print(num_9)
+    elif (number == "ten") or (number == "TEN") or (number == "TEn"):
+        print(num_10)
+    else:
+        number_new = number[0]
+        number_new_1 = number[1]
+        if (len(number)) == 2:
+            number_new = number[0]
+            number_new_1 = number[1]
+            word = ""
+            if number_new == "8":
+                word += "eighty "
+            elif (number_new == "9"):
+                word += "ninety "
+            elif (number_new == "7"):
+                word += "seventy "
+            elif (number_new == "6"):
+                word += "sixty "
+            elif (number_new == "5"):
+                word += "fifty "
+            elif (number_new == "4"):
+                word += "forty "
+            elif (number_new == "3"):
+                word += "thirty "
+            elif (number_new == "2"):
+                word += "twenty "
+            elif (number_new == "1"):
+                word += "one "
+            else:
+                word = ""
+                number_new_1 = number[1]
+            if  (number_new_1 == "1"):
+                word += "one"
+                print(word)
+                quit()
+            elif (number_new_1 == "0"):
+                word += ""
+                print(word)
+                quit()
+            elif (number_new_1 == "2"):
+                word += "two"
+                print(word)
+                quit()
+            elif (number_new_1 == "3"):
+                word += "three"
+                print(word)
+                quit()
+            elif (number_new_1 == "4"):
+                word += "four"
+                print(word)
+                quit()
+            elif (number_new_1 == "5"):
+                word += "five"
+                print(word)
+                quit()
+            elif (number_new_1 == "6"):
+                word += "six"
+                print(word)
+                quit()
+            elif (number_new_1 == "7"):
+                word += "seven"
+                print(word)
+                quit()
+            elif (number_new_1 == "8"):
+                word += "eight"
+                print(word)
+                quit()
+            elif (number_new_1 == "9"):
+                word += "nine"
+                print(word)
+                quit()
+number_write()
+
+
+
+
+
