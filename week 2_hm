@@ -1,0 +1,85 @@
+#password
+def password_generator():
+    thing_in_the_password = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+                             's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}
+    characters = {"!", "@", "#", "$", "%", "^", "&", "*", ",", ">", "+", "<", "=", "]", "~", "/"}
+    Password = ""
+    len_password = 1
+    import random as r
+    while (len_password > 0) and (len_password <= 14):
+        UperCase = (thing_in_the_password.pop())
+        thing_in_the_password.discard(UperCase)
+        UperCase = UperCase.upper()
+        Password += UperCase
+        len_password += 1
+        Lower_Case = (thing_in_the_password).pop()
+        thing_in_the_password.discard(Lower_Case)
+        Password += Lower_Case
+        len_password += 1
+        Character_Case = (characters).pop()
+        characters.discard(Character_Case)
+        Password += Character_Case
+        len_password += 1
+    print(f'Your password is, {Password}')
+password_generator()
+
+
+
+
+#Factors of a number
+def factors_num():
+    Factors = ""
+    number_factor = int(input("Enter your number:  "))
+    for i in range(1, int((number_factor // 2) + 1)):
+        if number_factor % int(i) == 0:
+            Factors += str(i) + " "
+        else:
+            continue
+    print(f'The factors of {number_factor} is {Factors}.')
+factors_num()
+
+
+
+#lcm calculator
+def lcm():
+    num_1 = int(input("Enter your 1st number:    "))
+    num_2 = int(input("Enter your second number:    "))
+    l2 = []
+    l3 = []
+    l4 = []
+    for i in range(1, num_2 + 1):
+        s = i * num_1
+        l2.append(s)
+
+    for z in range(1, num_1 + 1):
+        f = z * num_2
+        l3.append(f)
+
+    for h in l2:
+        for x in l3:
+            if h == x:
+                x = h
+                l4.append(x)
+                y=l4[0]
+                break
+    print(f'The Lcm of {num_1},{num_2} is {y}')
+lcm()
+
+
+
+#city find
+def city_find():
+    City = input("Enter a city:  ")
+    city = ["New York", "Dallas", "Chicago", "Denver", "Phoenix", "San Jose", "g"]
+    temp = [54, 78, 47, 80, 72, 67, 87]
+    if City == city[0]:
+        print(temp[0])
+        quit()
+    else:
+        for i in city:
+            index_city = city.index(City)
+        final = temp[index_city]
+        print(f"{City}'s temperature is {final} degrees.")
+
+
+city_find()
