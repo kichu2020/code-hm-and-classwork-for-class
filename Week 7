@@ -1,0 +1,43 @@
+num = int(input("Enter your number:  "))
+def factors(num):
+    return [i for i in range(1,num+1) if (num % i)==0]
+y = factors(num)
+print(y)
+
+
+word_1 = 'Today 7th is mid-day'
+def count_word(n):
+    f = 0
+    z = 1
+    for i in word_1:
+         if i == " ":
+             z+=1
+    for i in word_1:
+         i.lower()
+         if (i.isalpha()) or (i.lower==1 or i == 2 or i == 3 or i == 4 or i ==5 or i == 6 or i == 7 or i == 8 or i ==9):
+             f+=1
+    return f' There are {str(z)} words in the word "{word_1}". There are {f} unique Characters.'
+y = count_word(word_1)
+print(y)
+
+
+
+
+x =  [['a','b','c'],['d','e','f'],[1,2],[2.8,3.5]]
+def list_add(x):
+    l3 = [j for i in x for j in i ]
+    return f'The list {x} is now been turned into {l3}'
+y = list_add(x)
+print(y)
+
+
+
+num = int(input("Enter your number:  "))
+l2 =  [i for i in range(1,num+1) if (num % i)==0]
+l3 = []
+for i in l2:
+    for j in range(2,i):
+        if (i%j)==0:
+            l2.remove(i)
+            break
+print(l3)
