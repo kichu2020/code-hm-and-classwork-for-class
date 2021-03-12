@@ -20,9 +20,13 @@ x = circle(6)
 print(x)
 
 
-l3 = ["hi","Paaaaaaaa",0,None]
-for i in l3:
-    if   i==0 or len(i)<0:
-        l3.remove(i)
-print(l3)
+l3 = ["hi","Paaaaaaaa",0]
+def list(n):
+    for i in l3:
+        if   i==0 or len(i)<0:
+            l3.remove(i)
+    return l3
+y = list(l3)
+print(y)
+
 
