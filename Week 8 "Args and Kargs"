@@ -1,0 +1,28 @@
+group_ints = 10,20,5,9,126,87,65,103,96
+def odd_even(n):
+    return f'The even numbers: {[i for i in group_ints if i%2==0]} ,and The odd numbers: {[i for i in group_ints if i%2!=0]}'
+y = odd_even(group_ints)
+print(y)
+
+import statistics
+mean_median_mode = [6,15, 18, 8, 15, 22, 27, 3, 5, 3, 6, 3, 18, 16, 4, 20]
+def stats(n):
+    y =  ((f'Mean is {statistics.mean(mean_median_mode)}, Median is {statistics.median(mean_median_mode)}, Mode is {statistics.mode(mean_median_mode)}'))
+    return y
+x = stats(mean_median_mode)
+print(x)
+
+import math
+def circle(r):
+       tuple = (r ,r*2,2*math.pi*r,(r*r)*math.pi)
+       return tuple
+x = circle(6)
+print(x)
+
+
+l3 = ["hi","Paaaaaaaa",0,None]
+for i in l3:
+    if   i==0 or len(i)<0:
+        l3.remove(i)
+print(l3)
+
