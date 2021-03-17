@@ -34,6 +34,6 @@ def key_factors(**kwargs):
             if (kwargs.get(i)%j)==0:
                 x.append(j)
                 d1[i]=x
-        return d1
-y = key_factors(a = 10, b = 15, c = 17)
+            return d1
+y = key_factors(a = 10)
 print(y)
