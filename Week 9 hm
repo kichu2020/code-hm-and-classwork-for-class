@@ -1,0 +1,22 @@
+# Write a lambda function that will take 2 integers as parameters and return the largest of the two
+qs_1 = lambda x,z: f'The largest number of {x,z} is {max(x,z)}'
+qs_1(9,10)
+
+# Write a lambda function that will return "E" when even number is passed and "O" when odd number is passed
+qs_2 = lambda gg: "E" if gg%2==0 else "O"
+print(qs_2(8))
+
+
+
+#Write a lambda function that takes unlimited integers as parameters and return a list that contains the square
+qs_3 = lambda *args:[i*i for i in args]
+print(qs_3(6,7,8,9))
+
+#Write a lambda function that takes unlimited arguments and returns a list of even numbers
+qs_4 = lambda *args:[i for i in args if i%2==0]
+print(qs_4(1,2,3,4,5))
+
+
+# Write a lambda function that takes unlimited arguments and unlimited keyword arguments and returns the total
+qs_5 = lambda *args,**kwargs: f'The total number of arguments passed is {len(args)+len(kwargs)}. There are {len(args)} args passed and there are {len(kwargs)} kwargs passed.'
+print(qs_5(6,7,8,9,a=10,f=7))
