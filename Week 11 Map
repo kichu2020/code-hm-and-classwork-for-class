@@ -1,0 +1,15 @@
+import math
+y = map(lambda *args: int(sum(args) / len(args)), [75, 83, 92, 65, 98], [63, 82, 69, 92, 81], [57, 98, 93, 62, 76])
+print(f'The Averages are {list(y)}')
+
+
+y = map(lambda *args: int(*args), ("10", "5", "3", "7", "6", "4", "78","89"))
+print(f'Coverting from string to int you get {list(y)}.')
+
+
+y = map(lambda *args: (math.sin(*args),math.cos(*args),math.tan(*args)),(15,30))
+print(f'The values for Sin,Cos,Tan {list(y)}')
+
+
+y = map(lambda *args:((2*math.pi*int(*args)).__round__(3),(int(*args) * int(*args) * math.pi).__round__(3),(2*int(*args))),(5,10,15,20,25))
+print(f'The circumference,area, and diameter are {list(y)}')
