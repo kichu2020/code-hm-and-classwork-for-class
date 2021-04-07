@@ -1,0 +1,77 @@
+from functools import reduce
+l2 = ["Hello", "World", "Dinosaur", "Affirmation", "Adament"]
+def vowel_count(n):
+    count = 0
+    for i in n:
+        if i.lower == "a" or i.lower =="e" or i.lower =="i" or i.lower =="o" or i .lower=="u":
+            count += 1
+    return count
+y = map(vowel_count,l2)
+print(list(y))
+
+
+l5 = [3,7,5,8,2,4]
+def prime(n):
+    ok ={}
+    l4 = {}
+    for i in range(2,n):
+        if int(n)%i==0:
+            return False
+        else:
+            return True
+y = filter(prime,l5)
+print(list(y))
+
+
+
+l3 = ["him","krishna","Ragu","h"]
+def if_mor_vowl(n):
+    count = 0
+    for i in n:
+        if i == "a" or i == "e" or i == "i" or i == "o" or i == "u":
+            count += 1
+    if count<2 and count>0:
+        return True
+    else:
+        return False
+y = filter(if_mor_vowl,l3)
+print(list(y))
+
+
+l3 = [6,7,8,9]
+def amagram(x,y):
+    l4 = [ord(i.lower()) for i in x]
+    l3 = [ord(g.lower()) for g in y]
+    if sum(l4)==sum(l3):
+        return True
+    else:
+        return False
+print(amagram("hu","UH"))
+
+
+
+def small_large(n):
+    return min(n),max(n)
+y = small_large(l3)
+print(y)
+
+
+def hangman():
+    words = {"hi","code","sup","wassup","nice","python"}
+    the_word  = words.pop()
+    print(the_word)
+    lives  = 5
+    print(f'Try to guess the word! {len(str(the_word))*str("*")}')
+    while lives<=5 and lives>0:
+        guess_letter = input("Enter a letter:  ")
+        for i in the_word:
+            if guess_letter==i:
+                print("That's the a letter")
+                the_word=the_word.replace(guess_letter,"")
+                break
+            else:
+                print(f"Thats not the word you have {lives} lives left")
+                lives -= 1
+                break
+hangman()
+
