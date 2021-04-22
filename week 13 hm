@@ -1,0 +1,77 @@
+char_to_dots = {
+      'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
+      'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
+      'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
+      'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+      'Y': '-.--', 'Z': '--..', ' ': ' ', '0': '-----',
+      '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
+      '6': '-....', '7': '--...', '8': '---..', '9': '----.',
+      '&': '.-...', "'": '.----.', '@': '.--.-.', ')': '-.--.-', '(': '-.--.',
+      ':': '---...', ',': '--..--', '=': '-...-', '!': '-.-.--', '.': '.-.-.-',
+      '-': '-....-', '+': '.-.-.', '"': '.-..-.', '?': '..--..', '/': '-..-.'
+    }
+
+
+
+def morse(n):
+    x = ""
+    l2 = [i for i in n]
+    for i in l2:
+        for j in char_to_dots:
+            if i.upper()== j:
+                x+= char_to_dots.get(i)
+    return x
+print(morse("HF"))
+ 
+def lcm(n,l):
+      l3 = []
+      for i in range(min(n,l),(max(n,l)+1),min(n,l)):
+            l3.append(i)
+      for j in l3[1:]:
+            if j>=max(n,l) and max(n,l)%j==0:
+                  return j
+
+y= lcm(2,6)
+print(y)
+
+
+
+recipt = {'Apple': 2.50, 'Cherry': 4.35, 'Lemon': 2.85, 'Mango': 1.5}
+def price(n):
+    x = ""
+    for i in n:
+        for j in i:
+            if j=="a" or j=="A":
+                x += f'{i}: {n.get(i)*0.2}  ' \
+                     f''
+    return x
+y = price(recipt)
+print(y)
+
+
+l4  = ['dog', 'Cat', 'Dog', 'Cow', 'Train', 'book', 'Book']
+def okman(n):
+    l3 = [i.lower() for i in n]
+    l3.sort()
+    l4 = [x.upper() for x,y in l3 if x==y]
+
+    return l4
+f = okman(l4)
+print(f)
+
+
+def girl_which_boy(x,y):
+    girls = 0
+    boys = 0
+    for i in class_list:
+        if (i.get('gender')).upper()=="B":
+            boys+=1
+        elif (i.get('gender')).upper()=="G":
+            girls+=1
+    return f'boys {boys}, girls {girls}'
+y = reduce(girl_which_boy,class_list)
+print(y)
+
+
+
+
