@@ -1,0 +1,70 @@
+import random
+with open("name_gender_dob_city.txt","a") as name_gender_date_of_birth_city:
+    while True:
+        name = input("Please Enter your Name:  ")
+        if name == "-1":
+            print("The file has been closed")
+            break
+        gender = input("Please Enter your Gender:  ")
+        date_of_birth = input("Please Enter your Date Of Birth:  ")
+        city = input("Please enter your city:  ")
+        name_gender_date_of_birth_city.write(f'({name},{gender},{date_of_birth},{city})\n')
+    name_gender_date_of_birth_city.close()
+
+
+with open("Name_scores.txt","a") as students_scores:
+    #English, Math, Physics, Chemistry, Biology
+    while True:
+        name = input("Please Enter your Name:  ")
+        if name == "-1":
+            print("The file has been closed")
+            break
+        english = input("Please Enter your score in English:  ")
+        Math = int(input("Please Enter your score in math:  "))
+        Physics = int(input("Please Enter your score in Physics:  "))
+        Chemistry = int(input("Please Enter your score in Chemistry:  "))
+        Biology = int(input("Please Enter your score in Biology:  "))
+        students_scores.write(f'{name}'"\n"
+                              f'({english},{Math},{Physics},{Chemistry},{Biology})\n'
+                              f''"\n")
+    students_scores.close()
+
+
+y_add = lambda x,y: x+y
+x_multiply = lambda f,j: f*j
+f_divide = lambda i,g: i-g
+n_subtract = lambda v,b: v-b
+def choose(q,r):
+    z = [f_divide,n_subtract,y_add,x_multiply]
+    y = random.choice(z)
+    if y == y_add:
+        with open("add.txt", "a") as add_2_num:
+            add_2_num.write(f'{q}+{r} = {q+r}\n')
+            return f'look in file add_2_num'
+    elif y == x_multiply:
+        with open("multiply.txt", "a") as multiply_2_num:
+            multiply_2_num.write(f'{q}*{r} = {q*r}\n')
+            return f'look in file multiply_2_num'
+    elif y == f_divide:
+        with open("divide.txt", "a") as divide_2_num:
+            divide_2_num.write(f'{q}/{r} = {q/r}\n')
+            return f'look in file divide_2_num'
+    else:
+        with open("n_subtract.txt", "a") as subtract_2_num:
+            subtract_2_num.write(f'{q}-{r} = {q-r}\n')
+            return f'look in file subtract_2_num'
+z = choose(random.randint(1,100),random.randint(1,100))
+print(z)
+
+
+
+def honda_cars(model, vehicle_type, seat_type, capacity, gas, mpg):
+    with open("cars_info.txt", "a") as honda_cars:
+        honda_cars.write(f'{model},{vehicle_type},{seat_type},{capacity},{gas},{mpg} \n')
+        return "done!"
+y = honda_cars('Odyssey','Mini-van','Leather','7','True','28')
+z = honda_cars('2021 Honda CR-V','Mini-van','Up to 28 city / 34 highway','7','True','28')
+f = honda_cars('2021 Honda Accord','Large-van','Up to 30 city / 38 highway','7','True','192 to 252 hp')
+g = honda_cars('2021 Honda HR-V','mini-Large-van','Up to 28 city / 34 highway','7','True','141 hp')
+s = honda_cars('2021 Honda Pilot','Large-van','Up to 20 city / 27 highway',' 3,500 lbs','True','107 hp')
+print(y,z,f,g,s)
