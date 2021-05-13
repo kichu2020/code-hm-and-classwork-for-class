@@ -1,0 +1,50 @@
+def employee():
+    name = input("Hello QuickShop employee. What is your name:  ")
+    product_add = input(f'Hello {name}. Would you like to add a product? ')
+    if product_add.lower()=="no":
+        print("We will not add any product")
+    elif product_add.lower()=="yes":
+        info = input('Please enter the info in the format of "item number, item name, price per lb, quantity available:  "')
+        values = info.split(",")
+        with open('info_products.txt', 'r') as products_list:
+            g = True
+            for i in products_list:
+                l3 = i.split(",")
+                if l3[1].lower()==values[1]:
+                    print("You have already created this!")
+                    g = False
+                    break
+            if g==True:
+                with open('info_products.txt', 'a') as products_list:
+                    products_list.write(info)
+def customer_buys_product():
+    buy_or_not = input("We found the product! Would you like to buy it?  ")
+    if buy_or_not.lower()=="no":
+        print("This product has not been bought. See you soon!")
+    elif buy_or_not.lower()=="yes":
+        print("We have gotten the product! See you soon!")
+def customer():
+    name = input("Hello, Welcome to QuickShop. What is your name:  ")
+    product_find = input(f'Hello {name}. What product would you like to find? ')
+    with open('info_products.txt','r') as products_list:
+        g = False
+        for i in products_list:
+            all_stuff = i.split(',')
+            if all_stuff[0]==product_find:
+
+                g = True
+                break
+        if g:
+            print(f'Here is the information for the product {i}')
+            customer_buys_product()
+        elif g == False:
+           print("Sadly we have not found that product. We hope to see you soon!")
+def customer_employee():
+    status = input("Are you an employee or a customer? ")
+    if status.lower() == "customer":
+        customer()
+    elif status.lower() == "employee":
+        employee()
+    else:
+        print("We can't understand you")
+customer_employee()
