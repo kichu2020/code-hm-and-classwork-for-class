@@ -1,0 +1,58 @@
+import csv
+import statistics
+from datetime import datetime
+# question 1: Who was the nvp for Kansas City Chiefs
+# question 2: What Stadium did Kansas City Chiefs play
+# question 3: What state did the Kansas City chiefs play
+# question 4: Who was the looser in the Kansas City chiefs game
+
+# def question_1():
+#     return ("question 1")
+# def question_2():
+#     return ("question 2")
+# def question_3():
+#     return ("question 3")
+# def question_4():
+#     return ("question 4")
+# def question_5():
+#     return ("question 5")
+# d1 = {"Question 1": question_1(),"question 2":question_2(),"question 3":question_3(),"question 4":question_4()}
+# def user_ask():
+#     question = input('''Please choose 1 question"
+# question 1: Who was the nvp for Kansas City Chiefs
+# question 2: What Stadium did Kansas City Chiefs play
+# question 3: What state did the Kansas City chiefs play
+# question 4: Who was the looser in the Kansas City chiefs game
+# ''')
+#     for i in d1:
+#         if question.lower()==i.lower():
+#             print(f"The answer is: {d1[i]}")
+#             question = d1[i]
+# user_ask()
+#
+# path = 'data/amazon_stock_data.csv'
+# with open(path,"r") as ok:
+#     reader=csv.reader(ok)
+#     header = next(reader)
+#     data = [i[5] for i in header]
+# def question_a():
+#     return f'The answer to question a is {max(data)}'
+# def question_b():
+#     return f'The answer to question b is {min(data)}'
+# def question_c():
+#     return f'The answer to question c is {statistics.mean(data),statistics.median(data),statistics.mode(data)}'
+# question_function = {"question a":question_a(),"question b":question_b(),"question c":question_c()}
+# def amazon_questions():
+#     question = input('''
+# a) On which day was the stock price highest and its value
+# b) On which day was the stock price lowest and its value
+# c) Find the arithmetic mean, median and mode for the stock price
+# ''')
+#     for i in question_function:
+#         if question.lower()==i:
+#             print(question_function[i])
+#
+#
+#
+
+
