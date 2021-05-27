@@ -1,0 +1,156 @@
+import csv
+
+path = 'data/superbowl.csv'
+with open(path, 'r') as super_data_project_questions:
+    reader = csv.reader(super_data_project_questions)
+    header = next(reader)
+
+
+# question 1: What are all the games that were played on February
+# question 2: What are all the Stadiums that the New England Patriots played in?
+# question 3: What are all of the NVP's from all of the Denver Broncos Games?
+# question 4: Which state had the most games played there?
+
+def question_1():
+    data = ""
+    n = 1
+    for i in reader:
+        if str(i[:2]).lower() == 'feb':
+            values = data.split()
+            data += f'{n}. {values[2]} vs {values[3]} \n'
+            n += 1
+    return (data)
+
+
+def question_2():
+    data = ""
+    n = 1
+    for i in reader:
+        l3 = str(i).split()
+        if l3[2].lower() == 'new england patriots' or l3[4].lower() == 'new england patriots':
+            data += f'Game {n}: Was{l3[2]} vs {l3[4]}. This game was played in the Stadium {l3[7]} \n'
+            n += 1
+    return data
+
+
+def question_3():
+    data = ""
+    n = 1
+    for i in reader:
+        l3 = str(i).split()
+        if l3[2].lower() == 'denver broncos games' or l3[4].lower() == 'denver broncos games':
+            data += f'Game {n}: Was{l3[2]} vs {l3[4]}. The NVP for this game was {l3[6]} \n'
+            n += 1
+    return data
+
+
+def question_4():
+    d1 = {}
+    for i in reader:
+        for j in d1:
+            if j == i[0:2]:
+                y = d1.get(j)
+                y += 1
+
+        else:
+            d1[i[0:2]] = 1
+    return d1
+d1 = {"Question 1": question_1(), "question 2": question_2(), "question 3": question_3(), "question 4": question_4()}
+def user_ask():
+    question = input('''Please choose 1 question"
+question 1: What are all the games that were played on February
+question 2: What are all the Stadiums that the New England Patriots played in?
+question 3: What are all of the NVP's from all of the Denver xBroncos Games?
+question 4: Which state had the most games played there?
+
+Choose a question:  ''')
+    for i in d1:
+        if question.lower()==i.lower():
+            print(f"The answer is: {d1[i]}")
+            question = d1[i]
+user_ask()
+
+import csv
+#question 4
+def take_string_list(x,y):
+    for i in x:
+        for j in y:
+            if i==j:
+                y.remove(i)
+    return y
+print(take_string_list('bulb',['b', 'r', 't', 'q', 'b', 'l', 'l']))
+
+# question 5
+def uni_non_uni(g):
+    t = str(g)
+    l3 = []
+    pattern = ""
+    number_spliting = [str(i) for i in t]
+    x = 5
+    while x>0 and x<=8:
+        number_spliting = [str(i) for i in t]
+        for i in number_spliting:
+            l3.append(int(i)*int(i))
+        pattern+=str(sum(l3))+" "
+        t = str(sum(l3))
+        l3.clear()
+        x-=1
+    if (pattern.strip())[-1] == "1":
+        return f'the sequence is {pattern}' f' This means that {g} is a uni-number {True}'
+    else:
+        return f'the sequence is {pattern}' f' {g} is a non-uni-number {False}'
+print(uni_non_uni(12))
+
+
+
+path = 'data/disney.csv'
+with open(path,'r') as nice:
+    reader=csv.reader(nice)
+    header = next(reader)
+    data = [i for i in reader]
+def questythion_a():
+    year = []
+    movie = []
+    for i in reader:
+        values = i[1].split('-')
+        year_sum = int(values[0])+int(values[-1])
+        if year_sum<=2001:
+            movie.append(i[0])
+def question_b():
+    all_movies_sorted = [i[2] for i in reader]
+    print(all_movies_sorted.sort())
+def question_c():
+    all_movies_sorted = [i[1] for i in reader]
+    print((all_movies_sorted.sort())[::-1])
+def question_d():
+     for i in reader:
+         movies = ""
+         x = i[0].split(" ")
+         if len(x)>=4:
+             movies += i[0]+" "
+     print(movies)
+def question_e():
+    movies = []
+    for i in reader:
+        i = i[0]
+        for j in i:
+            if i.isalnum():
+                movies.append(i[0])
+                break
+    print(movies)
+questions = {'question a':question_a(),'question b':question_b(),'question c':question_c(),'question d':question_d(),'question e':question_e(),}
+def disney():
+    question_user = input('''Please enter one of the questions:
+a) Disney movies released before 1st Jan 2000
+b) Disney movies sorted and listed by Genre (alphabetical)
+c) Disney movies sorted by year (reverse chronological order) [It means starting with the latest movie first]
+d) Disney movies that has 4 or more words
+e) Disney movies that has numbers in it
+ ''')
+
+    for i in questions:
+        if question_user.lower()==i.lower():
+            questions.get(i)
+disney()
+
+
