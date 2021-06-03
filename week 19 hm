@@ -1,0 +1,72 @@
+import csv
+import random
+def create_files():
+    x=65
+    for i in range(x,91):
+        name = f'{chr(i)} file'
+        path = f'data/{chr(i)}.txt'
+        with open(path,'w') as name:
+            print("w")
+
+path = 'data/Motivational_Quotes.csv'
+with open(path, 'r') as quotes_project_questions:
+    reader = csv.reader(quotes_project_questions)
+    header = next(reader)
+    qd_data = [i for i in reader]
+def question_3():
+    x = random.choice(qd_data)
+    return (f'''One of the quotes written by {x[1]} is
+"{x[0]}"''')
+def question_1():
+    l3 = []
+    d1 = {}
+    for j in qd_data:
+        d1[j[1]] = 0
+    for i in qd_data:
+        for g in d1:
+            if i[1]==g:
+               d1[g]+=1
+    for g in d1:
+        y=d1.get(g)
+        l3.append(f'''{g} wrote {y} quotes ''')
+    l3.sort()
+    return (l3)
+def question_2():
+    l3 = []
+    d1 = {}
+    for j in qd_data:
+        d1[j[1]] = 0
+    for i in qd_data:
+        for g in d1:
+            if i[1]==g:
+               d1[g]+=1
+    for g in d1:
+        y=d1.get(g)
+        l3.append(f'''{g} wrote {y} quotes ''')
+    (l3.sort())
+    l3.reverse()
+    return (l3)
+def user_find_question():
+    question_name_function = {"question 1":question_1(),"question 2":question_2(),"question 3":question_3()}
+    user_question = input('''Please choose one of the questions:
+question 1: This question will display the author name and the total number of quotes they have made.
+question 2: This question will display the summary, author name and the total number of quotes they have made.
+question 3: This question will display a random quote each time the user picks this choice, along with its author.
+Choose your Question:  ''')
+    for i in question_name_function:
+            if user_question.lower()==i:
+                print(question_name_function.get(i))
+user_find_question()
+l5 = []
+def perfect_seating(x,y,z,g):
+    l3 = [x,y,z,g]
+    l5 = sorted(l3)
+    if l5 == l3:
+        l5.append(True)
+    elif l5 != l3:
+        l5.append(False)
+
+y = map(perfect_seating,[1, 2, 3, 2], [2, 4, 4, 3],[5, 5, 5, 10],[6, 6, 7, 6])
+print(list(y))
+
+
