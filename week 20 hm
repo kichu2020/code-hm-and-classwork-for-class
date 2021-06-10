@@ -1,0 +1,51 @@
+import statistics
+def equation(n):
+    l3 = n.split()
+    equation  = ""
+    for i in l3[:-2]:
+        equation += i
+    if eval(equation)==float(l3[-1]):
+        return True
+    else:
+        return False
+print(equation("15 + 8 = 25"))
+
+def ascending(n):
+    n = [f'{i} ' for i in n]
+    l3 = []
+    mhm = set(n)
+    for j in mhm:
+        l3.append(list([(n.count(j)*str(j))]))
+    return l3
+print(ascending([5,8,2,5,9,1,3,4,5,2,8,2,9,3,2,5,2]))
+
+def same_vowel_group(n):
+    vowels = []
+    final = ""
+    for i in n:
+        for j in i:
+            if (j.lower()=='a' or j.lower() =='e'or j.lower()=='i' or j.lower()=='o'or j.lower()=='u'):
+                vowels.append(j)
+    ok = statistics.mode(vowels)
+    s_vowels = set(vowels)
+    for i in n:
+        if i.find(ok)!=-1:
+            final+=str(i)+" "
+    return final
+print(same_vowel_group(["hoops", "chuff", "bot", "bottom"]))
+
+def word_mix(word_1,word_2):
+    l_word_1 = [i for i in word_1]
+    l_word_2 = [i for i in word_2]
+    l_word_1.reverse()
+    x = ""
+    for v_lw1,v_lw2 in zip(l_word_1,l_word_2):
+        if v_lw1==v_lw2:
+            l_word_2.remove(v_lw2)
+    l_word_1.reverse()
+    print(l_word_1,l_word_2)
+word_mix('banana','anabel')
+
+
+
+
