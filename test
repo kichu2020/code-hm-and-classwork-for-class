@@ -1,0 +1,124 @@
+import csv
+import re
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
+no_list = ['no','nah','nope','no thanks','next time','maybe','Unfortunately','urgh','bruh','nooo','shut up','never','nevr','ever']
+yes_list = ['um ok','kkk','kk','Yes','Ya','Yep','Yup','YAAAAAS','Totally','Totes','Sure','You bet','OK','K','Okay','Okie dokie','Alright','Alrighty','Sounds good','For sure','Sure thing','Certainly','Definitely','of course','Gladly','Indubitably','Absolutely','Indeed','Undoubtedly','Very well','Obviously','Fine','lets go','yeah','Aye','Forsooth','Yea','Verily','Surely','Mhmm','Uh-huh']
+
+path = '../files_data/superbowl.csv'
+path_reinforcemnt = '../files_data/reinforcment_learning_superbowl.csv'
+with open(path, 'r') as super_data_project_questions:
+    reader = csv.reader(super_data_project_questions)
+    header = next(reader)
+    sb_data = [i for i in reader]
+# question 1: What are all txhe games that were played on February
+# question 2: What are all the Stadiums that the New England Patriots played in?
+# question 3: What are all of the NVP's from all of the Denver Broncos Games?
+# question 4: Which state had the most games played there?
+# question 5: All games in stadium (Parameter)
+all_stadiums = ['Hard Rock Stadium', 'Mercedes-Benz Stadium', 'U.S. Bank Stadium', 'NRG Stadium', "Levi's Stadium", 'University of Phoenix Stadium', 'MetLife Stadium', 'Mercedes-Benz Superdome', 'Lucas Oil Stadium', 'Cowboys Stadium', 'Sun Life Stadium', 'Raymond James Stadium', 'University of Phoenix Stadium', 'Dolphin Stadium', 'Ford Field', 'Alltel Stadium', 'Reliant Stadium', 'Qualcomm Stadium', 'Louisiana Superdome', 'Raymond James Stadium', 'Georgia Dome', 'Pro Player Stadium', 'Qualcomm Stadium', 'Louisiana Superdome', 'Sun Devil Stadium', 'Joe Robbie Stadium', 'Georgia Dome', 'Rose Bowl', 'Metrodome', 'Tampa Stadium', 'Louisiana Superdome', 'Joe Robbie Stadium', 'Jack Murphy Stadium', 'Rose Bowl', 'Louisiana Superdome', 'Stanford Stadium', 'Tampa Stadium', 'Rose Bowl', 'Pontiac Silverdome', 'Louisiana Superdome', 'Rose Bowl', 'Orange Bowl', 'Superdome', 'Rose Bowl', 'Orange Bowl', 'Tulane Stadium', 'Rice Stadium', 'Memorial Coliseum', 'Tulane Stadium', 'Orange Bowl', 'Tulane Stadium', 'Orange Bowl', 'Orange Bowl', 'Memorial Coliseum']
+
+user_stadium = input("From which Stadium would you like all of the games played there?  ")
+def question_5(s):
+    status = (process.extractOne(user_stadium, all_stadiums))
+    print(status)
+    def ques_5():
+        print(f"""        
+Here are all of the games in the {status[0]}
+        """)
+        final_all_info = ""
+        for i in sb_data:
+            if i[7]==status[0]:
+                superbowl_value = i[1].split()
+                superbowl_value = superbowl_value[1]
+                line_info = f'Superbowl {superbowl_value} was in the {status[0]}: {i[2]} vs {i[4]}\n'
+                final_all_info += line_info
+        print(final_all_info, status)
+    if status[1] >= 80:
+        ques_5()
+    elif status[1] >= 68:
+        with open(path_reinforcemnt, 'r') as reinforcment_learning_file:
+            reader = csv.reader(reinforcment_learning_file)
+            header = next(reader)
+            reinforcement_data = [i for i in reader]
+        for j in reinforcement_data:
+            if fuzz.WRatio(user_stadium.lower(),j[1].lower())>95:
+                status = [j[1],'hi']
+        y_comfirm = input(f'We might think that you want {status[0]}. May you confirm this? ')
+        status_yes = (process.extractOne(y_comfirm, yes_list))
+        status_no = (process.extractOne(y_comfirm, no_list))
+        if status_yes[1] >=85:
+            with open(path_reinforcemnt, 'a') as reinforcment_learning_file:
+                reinforcment_learning_file.write(f'{user_stadium.lower()},{status[0]}')
+            ques_5()
+        elif status_no[1] >=85:
+            print("Ok, Lets try again.")
+            again = input("From which Stadium would you like all of the games played there?  ")
+            question_5(again)
+    elif status[1] <= 67:
+        print(f"Sorry, I don't understand")
+question_5(user_stadium)
+# def question_1():
+#     num = 1
+#     n = ""
+#     for i in sb_data:
+#         if (((i[0])[0:3]).lower()) == 'feb':
+#             y = i[1].split(' ')
+#             n += f'{num}. Superbowl {(y[1])[1:-1]} in February is: {i[2]} vs {i[4]}\n'
+#             num += 1
+#     return (n)
+#
+#
+# def question_2():
+#     num = 1
+#     n = ""
+#     for i in sb_data:
+#         if (i[2].strip()).lower() == 'new england patriots' or (i[4].strip()).lower() == 'new england patriots':
+#             y = i[1].split(' ')
+#             n += f'{num}. {i[2]} vs {i[4]}: Stadium {i[7]}\n'
+#             num += 1
+#     return (n)
+#
+#
+# def question_3():
+#     num = 1
+#     n = ""
+#     for i in sb_data:
+#         if (i[2].strip()).lower() == 'denver broncos' or (i[4].strip()).lower() == 'denver broncos':
+#             n += f'{num}. {i[2]} vs {i[4]}: NVP is {i[6]} \n'
+#             num += 1
+#     return (n)
+#
+#
+# state_num = {}
+#
+#
+# def question_4():
+#     for i in sb_data:
+#         state_num[(i[-1].lower()).strip()] = 0
+#     for i in sb_data:
+#         i = (i[-1].lower()).strip()
+#         for j in state_num:
+#             if j == i:
+#                 state_num[j] += 1
+#     large = [state_num.get(i) for i in state_num]
+#     for k in state_num:
+#         if state_num.get(k) == max(large):
+#             most_playes = k
+#     return (f'The month {most_playes} had the most games played there with {max(large)} games played')
+
+
+# def user_ask():
+#     d1 = {'1': question_1(), '2': question_2(), '3': question_3(), '4': question_4()}
+#     user_question = input('''Please choose one of the following questions:
+# question 1: What are all the games that were played on February
+# question 2: What are all the Stadiums that the New England Patriots played in?
+# question 3: What are all of the NVP's from all of the Denver Broncos Games?
+# question 4: Which state had the most games played there?
+#
+# Your question:  ''')
+#
+#     for i in d1:
+#         if user_question.lower() == i:
+#             print(d1.get(i))
+#
