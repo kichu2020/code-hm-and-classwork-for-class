@@ -1,3 +1,23 @@
+polybius_info_horizontal = {1:('A','B','C','D','E'),2:('F','G','H','I','K'),3:('L','M','N','O','P'),4:('Q','R','S','T','U'),5:('V','W','X','Y','Z')}
+def polybius(n):
+    l3 = [i.upper() for i in n if i.isalpha()]
+    y = []
+    final = ""
+    for i in l3:
+        if i=='J':
+            i='I'
+        y.clear()
+        for v_horizon in polybius_info_horizontal:
+            y.append(str(polybius_info_horizontal.get(v_horizon).__contains__(i)))
+            if polybius_info_horizontal.get(v_horizon).__contains__(i):
+                final += str(v_horizon)
+                y.append(v_horizon)
+                break
+        bruh = y[-1]
+        x = list(polybius_info_horizontal.get(bruh)).index(i)+1
+        final += f'{x} '
+    print(final)
+polybius('hi')
 def decipher(n):
     n.strip()
     l3 = [n[i:i+2].strip() for i in range(0,len(n)+1,2) ]
