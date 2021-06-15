@@ -1,18 +1,3 @@
-# #numbersplit
-# number_split = str(input("Please enter your number:   "))
-#
-# NO = ""
-# zeeros_end = len(number_split) - 1
-# for i in number_split:
-#     if i == "0":
-#         zeeros_end -= 1
-#         continue
-#
-#     final = (i + str(zeeros_end * str(0))) + "+"
-#     zeeros_end -= 1
-#     NO += final
-# print(NO[0:-1])
-
 path = "data/my_file.txt"
 print('''question 1:''')
 with open(path,'r') as question_4_file:
