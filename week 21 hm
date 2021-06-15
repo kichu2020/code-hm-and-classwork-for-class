@@ -59,7 +59,7 @@ print('''
 ''')
 print('''question 4 and 5:''')
 polybius_info_horizontal = {1:('A','B','C','D','E'),2:('F','G','H','I','K'),3:('L','M','N','O','P'),4:('Q','R','S','T','U'),5:('V','W','X','Y','Z')}
-def polybius(n):
+def polybius_decipher(n):
     x = n
     x = x.replace(" ","")
     if str(n).isalpha():
@@ -94,5 +94,5 @@ def polybius(n):
                 if str(l4[0]) == str(val_polybius):
                     final += list(polybius_info_horizontal.get(val_polybius))[int(l4[1]) - 1]
         return f'The code "{n}" has been decoded to "{final.strip()}"'
-print(polybius('HI'))
-print(polybius('2324  4423154215'))
+print(polybius_decipher('HI'))
+print(polybius_decipher('2324  4423154215'))
