@@ -1,0 +1,36 @@
+import smtplib
+email_sender_i = input("Hello, Welcome please enter your email: ")
+send_to_i = input("Please enter email of the receiver: ")
+choice_ssl_tls_i = input("Would you like to send your email with SSL or TLS?: ").upper()
+gmail_password_i = "atgfxeiyvibcvkqi"
+subject_i = input("Please enter the subject of your email: ")
+body_i = input("""Please enter your body of your email: """)
+email_text_i = f"""From: {email_sender_i.split('@')[0]}
+To: {send_to_i.split('@')[0]}
+Subject: {subject_i}
+{body_i}"""
+def email_sender(email_sender,send_to,choice_ssl_tls,gmail_password,email_text):
+    def send_mail_ssl(sf,st,et):
+        server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+        server.login(email_sender,gmail_password)
+        server.sendmail(sf,st,et)
+        server.quit()
+    def send_mail_tls(sf,st,et):
+        server = smtplib.SMTP("smtp.gmail.com",587)
+        server.ehlo()
+        server.starttls()
+        server.login(email_sender,gmail_password)
+        server.sendmail(sf,st,et)
+        server.quit()
+
+
+    if choice_ssl_tls == 'SSL':
+        send_mail_ssl(email_sender, send_to, email_text)
+        print('message sent!')
+    elif choice_ssl_tls == 'TLS':
+        send_mail_tls(email_sender, send_to, email_text)
+        print('message sent!')
+    else:
+        print("Sorry we don't understand you")
+email_sender(email_sender_i,send_to_i,choice_ssl_tls_i,gmail_password_i,email_text_i)
+
