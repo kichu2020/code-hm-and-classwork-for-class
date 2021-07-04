@@ -1,0 +1,53 @@
+import yagmail
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
+gmail_user=input("Please enter your email: ")
+send_to=input("Please enter the email of the people to whom you would like to send it to. Separate by comma: ")
+if send_to.strip()=="":
+    send_to=None
+elif send_to.__contains__(','):
+    send_to_n = send_to.split(',')
+    send_to = [i for i in send_to_n]
+else:
+    send_to = [send_to]
+
+cc_to = input("Enter the email of the people to whom you would like to send a carbon copy to: ")
+if cc_to.strip()=="":
+    cc_to=None
+elif cc_to.__contains__(','):
+    cc_to_n = cc_to.split(',')
+    cc_to = [i for i in cc_to_n]
+else:
+    cc_to = [cc_to]
+
+bcc_to = input("Enter the email of the people to whom you would like to send a blind carbon copy to: ")
+if bcc_to.strip()=="":
+    bcc_to=None
+elif bcc_to.__contains__(','):
+    bcc_to_n = bcc_to.split(',')
+    bcc_to = [i for i in bcc_to_n]
+else:
+    bcc_to = [bcc_to]
+subject = input("Please enter the subject of your email: ")
+body_n = input("Please enter the body of your email. Enter done on the next line when done: ")
+
+body = f"{body_n}\n"
+body_n = 'None'
+while True:
+    body_n=input('')
+    if body_n.lower()!='done':
+        body += f'{body_n}\n'
+    else:
+        break
+images=input("Please enter your images separated by commas such as 'a+.jpeg','meera.png':  ")
+if images.__contains__(','):
+    images_n=images.split(',')
+    attachments = [f'/Users/krishnanujam/Desktop/{i}' for i in images_n]
+else:
+    attachments = [f'/Users/krishnanujam/Desktop/{images}']
+gmail_password = "atgfxeiyvibcvkqi"
+yag = yagmail.SMTP(gmail_user,gmail_password)
+yag.send(to=send_to,cc=cc_to,bcc=bcc_to,subject=subject,contents=body,attachments=attachments)
+print("Mail sent!")
