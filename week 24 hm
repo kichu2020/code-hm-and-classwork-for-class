@@ -1,0 +1,63 @@
+# question 5
+import datetime
+
+l3 = []
+
+print('question 1')
+def divisible_by_19th_or_13th(*args):
+    for i in args:
+        if i % 19 == 0 or i % 13 == 0:
+            l3.append(i)
+    print(l3)
+divisible_by_19th_or_13th(19,38,42542)
+print("""
+""")
+print('question 2')
+def sort_arrays(n):
+    positive = []
+    negative = []
+    for i in n:
+        if str(i)[0] == '-':
+            negative.append(i)
+        else:
+            positive.append(i)
+    l5 = positive + negative[::-1]
+    print(l5)
+sort_arrays([-1, 2, -3, 5, 7, 8, 9, -10])
+print("""
+""")
+print('question 3')
+def intersection(l1, l2):
+    l9 = []
+    for i in l2:
+        if set(l1).__contains__(i):
+            l9.append(i)
+    print(l9)
+intersection([1, 2, 3, 5, 7, 8, 9, 10] , [1, 2, 4, 8, 9, 10])
+print("""
+""")
+print('question 4')
+def date_today():
+    x = ""
+    all_info = str(datetime.datetime.today())
+    print(all_info)
+    l3 = all_info.split()
+    l4 = l3[0].split('-')
+    for i in l4:
+        if i.startswith('0'):
+            i = i[1:]
+        print(i)
+    print(l3[-1])
+date_today()
+print("""
+""")
+print('question 5')
+def sort_tuples(n):
+    l4 = []
+    l3 = sorted([i[1] for i in n])
+    for i in l3:
+        for j in n:
+            if str(i)==str(j[1]):
+                l4.append(j)
+    print(l4)
+sort_tuples([('English', 90), ('Science', 86), ('Maths', 100), ('Social sciences', 81)])
