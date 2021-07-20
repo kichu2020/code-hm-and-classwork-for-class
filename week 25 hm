@@ -1,0 +1,67 @@
+import json
+import fuzzywuzzy.process
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
+
+file_name = 'files_data/grocery_store.json'
+def add_item():
+    name = input("Please enter the name of the product you would like to add: ")
+    price = input(f"Please enter the price of the {name}: ")
+    quantity = input(f"Please enter the quantity of the {name}: ")
+    code = int(input("Please enter a 4 digit code for your product: "))
+    with open(file_name, 'r') as file:
+        my_json_data = json.load(file)
+    all_info = my_json_data.get('items')
+    info_add={"product":name,"code": code,"price": price,"quantity_in_hand": quantity}
+    all_info.append(info_add)
+    all_info_sn = {"items": all_info}
+    with open(file_name, 'w') as file:
+        json.dump(all_info_sn, file, indent=2)
+    print("Item added")
+
+
+
+def search_item():
+    item_name = input("Please enter the name of your item that you want to search: ")
+    with open(file_name, 'r') as file:
+        my_json_data = json.load(file)
+    all_info = my_json_data.get('items')
+    for i in all_info:
+        x = i.get('product')
+        if fuzz.token_set_ratio(item_name.lower(),x.lower())>=92:
+            for z in i:
+                print(f'{str(z).replace("_", " ").title()}: {i.get(z)}')
+
+
+def delete_item():
+    item_name = input("Please enter the name of your item to delete: ")
+    with open(file_name, 'r') as file:
+        my_json_data = json.load(file)
+    all_info = my_json_data.get('items')
+    for i in all_info:
+        x = i.get('product')
+        if fuzz.token_set_ratio(x,item_name)>=92:
+            for z in i:
+                if fuzz.token_set_ratio(i.get(z),item_name)>=92:
+                    all_info.remove(i)
+    all_info_sn = {"items": all_info}
+    with open(file_name, 'w') as file:
+        json.dump(all_info_sn, file, indent=2)
+    print(f"The item {item_name} has been successfully deleted")
+
+def exit_grocery():
+    print("Bye, See you soon!")
+    quit()
+
+d1 = {"c":search_item,"a":add_item,"b":delete_item,"d":exit_grocery}
+
+choice = input("""Please choose 1 of the options:
+a. Add an item to store
+b. Delete an item from store
+c. Search for an item by name and display the details
+d. Quit
+
+Your choice: """).lower()
+for i in d1:
+    if i==choice:
+       d1.get(choice)()
