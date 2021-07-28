@@ -1,0 +1,89 @@
+import os
+import random
+import datetime
+my_home = "/Users/krishnanujam/tmp_pycharm"
+os.chdir(my_home)
+
+
+def question_1():
+    my_home = "/Users/krishnanujam/tmp_pycharm/problem 1"
+    os.chdir(my_home)
+    x=1
+    y = [chr(i).lower() for i in range(65,91)]
+    l3=[]
+    directories = []
+    while x>0:
+        l3.append("".join(random.sample(y,5)))
+        x-=1
+    for i in l3:
+        try:
+            my_home_nw_file = f"/Users/krishnanujam/tmp_pycharm/problem 1/{i[0]} directory"
+            os.chdir(my_home_nw_file)
+        except FileNotFoundError:
+            new_directory = f"{i[0]} directory"
+            os.mkdir(new_directory)
+            print(new_directory)
+            my_home_nw_file = f"/Users/krishnanujam/tmp_pycharm/problem 1/{i[0]} directory"
+            os.chdir(my_home_nw_file)
+        with open(f'{i}.txt', 'w') as name_dirct_ok_man:
+            name_dirct_ok_man.write(f'''Hello, This file will go under the directory {i[0]}''')
+            directories.append(f'{i[1]} directory')
+# question_1()
+
+
+def question_2():
+    try:
+        my_home = "/Users/krishnanujam/tmp_pycharm/problem 2"
+        os.chdir(my_home)
+        for i in range(1,6):
+            os.mkdir(f'dir {i}')
+        for x in range(1,6):
+            time = str(datetime.datetime.now()).split(".")[-1]
+            if int(time) < 200000:
+                my_home = "/Users/krishnanujam/tmp_pycharm/problem 2/dir 1"
+                os.chdir(my_home)
+                with open(f'{x}.txt', 'w') as d1_name:
+                    d1_name.write(f"This file goes under dir 1")
+            elif int(time) < 400000:
+                my_home = "/Users/krishnanujam/tmp_pycharm/problem 2/dir 2"
+                os.chdir(my_home)
+                with open(f'{x}.txt', 'w') as d2_name:
+                    d2_name.write(f"This file goes under dir 2")
+            elif int(time) < 600000:
+                my_home = "/Users/krishnanujam/tmp_pycharm/problem 2/dir 3"
+                os.chdir(my_home)
+                with open(f'{x}.txt', 'w') as d3_name:
+                    d3_name.write(f"This file goes under dir 3")
+            elif int(time) < 800000:
+                my_home = "/Users/krishnanujam/tmp_pycharm/problem 2/dir 4"
+                os.chdir(my_home)
+                with open(f'{x}.txt', 'w') as d4_name:
+                    d4_name.write(f"This file goes under dir 4")
+            elif int(time) < 800000:
+                my_home = "/Users/krishnanujam/tmp_pycharm/problem 2/dir 5"
+                os.chdir(my_home)
+                with open(f'{x}.txt', 'w') as d5_name:
+                    d5_name.write(f"This file goes under dir 5")
+    except FileExistsError as e:
+        print("file exists")
+# question_2()
+
+def question_3():
+    all = ""
+    my_home = "/Users/krishnanujam/tmp_pycharm/problem 2"
+    os.chdir(my_home)
+    y = os.listdir()
+    y.remove(".DS_Store")
+    for i in y:
+        my_home = f"/Users/krishnanujam/tmp_pycharm/problem 2/{i}"
+        os.chdir(my_home)
+        x = os.listdir()
+        if x==[]:
+            my_home = f"/Users/krishnanujam/tmp_pycharm/problem 2"
+            os.chdir(my_home)
+            os.rmdir(i)
+            all += f'{i},'
+    all = all[:-1]
+    all+="has been deleted"
+question_3()
+
