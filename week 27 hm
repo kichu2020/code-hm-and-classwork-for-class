@@ -1,0 +1,71 @@
+import os
+import random
+from datetime import date
+
+my_home = "/Users/krishnanujam/tmp_pycharm"
+os.chdir(my_home)
+
+def question_1():
+    l4 = []
+    x = 10
+    l3 = [chr(i) for i in range(97,123)]
+    while x>0:
+        l4.append("".join(random.sample(l3,5)))
+        x-=1
+    for i in l4:
+        my_home_nw_file = (f"/Users/krishnanujam/tmp_pycharm/problem_1_27hm/{i[::-1]} directory")
+        os.mkdir(f'{my_home_nw_file}')
+        file_name = f'{i} file'
+        with open(f'{my_home_nw_file}/{i}.txt','a') as file_name:
+            file_name.write(f'This is {i} file')
+    print("All files writen")
+question_1()
+
+
+def question_2():
+    os.chdir(f"/Users/krishnanujam/tmp_pycharm/problem_1_27hm")
+    all_stuff = os.listdir()
+    all_stuff.remove('.DS_Store')
+    for i in all_stuff:
+        f = f"/Users/krishnanujam/tmp_pycharm/problem_1_27hm/{i}"
+        os.chdir(f"/Users/krishnanujam/tmp_pycharm/problem_1_27hm/{i}")
+        x = os.listdir()
+        new = f'{x[0].replace(".txt","")}{date.today()}.txt'
+        os.rename(f'{f}/{x[0]}',f'{f}/{new}')
+    print('renamed!')
+question_2()
+
+def question_4():
+    x = list(os.walk(os.getcwd()))
+    y = x[2:-12]
+    l3 = [i[2][0] for i in y]
+    l3.sort()
+    print(l3)
+question_4()
+
+
+def question_3():
+    try:
+        os.chdir(f"/Users/krishnanujam/tmp_pycharm/problem_1_27hm")
+        all_stuff = os.listdir()
+        all_stuff.remove('.DS_Store')
+        for i in all_stuff:
+            f = f"/Users/krishnanujam/tmp_pycharm/problem_1_27hm/{i}"
+            os.chdir(f"/Users/krishnanujam/tmp_pycharm/problem_1_27hm/{i}")
+            x = os.listdir()
+            if x[0][0:3]=='.DS':
+                continue
+            elif os.stat(x[0]).st_size<40:
+                os.remove(x[0])
+                print(f"{x[0]} file deleted")
+    except IndexError:
+        print("No files left")
+question_3()
+
+
+def question_5():
+    numbers_modified = []
+    numbers = [6,7,8]
+    y = list(map(lambda n:numbers_modified.append(n+11) if n>50 else numbers_modified.append(n+1),numbers))
+    print(numbers_modified)
+question_5()
