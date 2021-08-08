@@ -1,0 +1,70 @@
+import re
+from functools import reduce
+import random
+
+prob_3_path = 'data/prob_3_random_stuff.txt'
+all_phones = 'data/phone_numbers.txt'
+uk_path = 'data/phone_numbers_uk.txt'
+us_path = 'data/phone_numbers_us.txt'
+def question_1():
+    with open(all_phones,'r') as phone_info:
+        l3 = str([i for i in phone_info])[1:-1]
+    with open(us_path,'w') as us_phone:
+        us_phone.write('\n'.join(re.compile(r'\d\d\d-\d\d\d-\d\d\d\d').findall(l3)))
+    with open(uk_path,'w') as uk_phone:
+        uk_phone.write('\n'.join(re.compile(r'\d\d\d\d\d-\d\d\d\d\d\d').findall(l3)))
+    print("All phone numbers organized!")
+question_1()
+
+
+def us_phone_check_ques_2_part(number):
+    x = str(number).split('-')
+    y = [len(i) for i in x]
+    if y==[3,3,4]:
+        with open(us_path, 'a') as us_phone:
+            us_phone.write(f'{number}\n')
+    elif y == [5,6]:
+        with open(uk_path, 'a') as uk_phone:
+            uk_phone.write(f'{number}\n')
+def question_2():
+    with open(all_phones,'r') as phone_info:
+        l4 = [i[:-1] for i in phone_info]
+    for i in l4:
+        if i.__contains__(' ')==False:
+            us_phone_check_ques_2_part(i)
+    print("writen")
+question_2()
+
+
+def create_random_in_file_part_ques_3():
+    with open(prob_3_path,'w') as prob_3_file:
+        l3 = []
+        number_of_bytes = 250
+        y = [chr(i).lower() for i in range(65, 91)] + [chr(i).upper() for i in range(65, 91)] + [str(i) for i in range(11)]
+        while number_of_bytes>=0:
+            stuff = "".join(random.sample(y,random.randint(5,15)))
+            prob_3_file.write(f'{stuff}\n')
+            number_of_bytes-=len(stuff)
+create_random_in_file_part_ques_3()
+
+
+def question_3():
+    with open(prob_3_path, 'r') as prob_3_file:
+        l3 = [i for i in prob_3_file]
+    y = [''.join(re.compile(r'\d').findall(i)) for i in l3]
+    print(f'The longest chain is {max(y)}')
+question_3()
+def question_4():
+    with open(prob_3_path, 'r') as prob_3_file:
+        l3 = [i for i in prob_3_file]
+    final = []
+    for l3_items in l3:
+        y = [i for i in l3_items]
+        x = [i for i in y if i.isdigit()]
+        final.append(''.join(x))
+    print(f'The longest chain is {max(final)}')
+question_4()
+
+
+y = map(lambda x: [i for i in x],["Cherry", "Banana", "Apple"])
+print(list(y))
