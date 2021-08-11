@@ -14,7 +14,7 @@ def question_1():
     with open(uk_path,'w') as uk_phone:
         uk_phone.write('\n'.join(re.compile(r'\d\d\d\d\d-\d\d\d\d\d\d').findall(l3)))
     print("All phone numbers organized!")
-question_1()
+# question_1()
 
 
 def us_phone_check_ques_2_part(number):
@@ -33,7 +33,7 @@ def question_2():
         if i.__contains__(' ')==False:
             us_phone_check_ques_2_part(i)
     print("writen")
-question_2()
+# question_2()
 
 
 def create_random_in_file_part_ques_3():
@@ -45,28 +45,56 @@ def create_random_in_file_part_ques_3():
             stuff = "".join(random.sample(y,random.randint(5,15)))
             prob_3_file.write(f'{stuff}\n')
             number_of_bytes-=len(stuff)
-create_random_in_file_part_ques_3()
-
-
-def question_3():
-    with open(prob_3_path, 'r') as prob_3_file:
-        l3 = [i for i in prob_3_file]
-    y = [''.join(re.compile(r'\d').findall(i)) for i in l3]
-    print(f'The longest chain is {max(y)}')
-question_3()
-
-
-def question_4():
-    with open(prob_3_path, 'r') as prob_3_file:
-        l3 = [i for i in prob_3_file]
-    final = []
-    for l3_items in l3:
-        y = [i for i in l3_items]
-        x = [i for i in y if i.isdigit()]
-        final.append(''.join(x))
-    print(f'The longest chain is {max(final)}')
-question_4()
-
+# create_random_in_file_part_ques_3()
 
 y = map(lambda x: [i for i in x],["Cherry", "Banana", "Apple"])
-print(list(y))
+# print(list(y))
+
+
+
+
+with open(prob_3_path, 'r') as prob_3_file:
+    l312 = [i for i in prob_3_file]
+l9 = []
+def prob_3(n):
+    l4 = []
+    f = ""
+    for i in n:
+        if i.isnumeric():
+            f+=i
+        elif i.isalnum():
+            l4.append(f)
+            f=""
+    l4.append(f)
+    y = [len(i) for i in l4]
+    l9.append(l4[y.index(max(y))])
+y = list(map(prob_3,l312))
+print(f'The largest chain is {l9[[len(i) for i in l9].index(max([len(i) for i in l9]))]}')
+
+
+wegbf7824 = []
+def prob_3_re(num):
+    try:
+        pattern = re.compile(r'\d')
+        matches = pattern.finditer(num)
+        l3 = [match.span() for match in matches]
+        r = []
+        count = []
+        for z, y in zip(l3, l3[1:]):
+            if y[1] == z[1] + 1:
+                count.append(z)
+                count.append(y)
+            else:
+                count = sorted(set(count))
+                r.append(str(count)[1:-1])
+                count.clear()
+        r.append(str(count)[1:-1])
+        l4 = max(r).split('), (')
+        l4[-1]=l4[-1][:-1]
+        l4[0] = l4[0][1:]
+        wegbf7824.append(num[int(l4[0].split(',')[1].strip()) - 1:int(l4[-1].split(',')[1].strip())])
+    except IndexError:
+        wegbf7824.append('0')
+prob_3_re('04853tXRqs')
+d = list(map(prob_3_re,l312))
+print(f'The largest chain is {max(wegbf7824)}')
