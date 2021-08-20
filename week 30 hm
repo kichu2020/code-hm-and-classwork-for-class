@@ -1,0 +1,50 @@
+import re
+prob_3_path = 'data/prob_3_random_stuff.txt'
+
+def question_1_with_regex(x):
+    pattern = re.compile(r'[\d,\w]')
+    matches = pattern.findall(str(x))
+    if [i for i in x]==matches:
+        return True
+    return False
+#print(question_1_with_regex('he6543?'))
+
+def question_1_no_regex(x):
+    x_list = [i for i in str(x)]
+    y_list = [i for i in x if str(i).isalnum() or str(i).isalpha()]
+    if x_list==y_list:
+        return True
+    else:
+        return False
+# print(question_no_regex('he6543'))
+
+
+def question_2_regex(n):
+    pattern = re.compile(r'\w$')
+    matches = pattern.findall(n)[0]
+    if str(matches).isnumeric():
+        return True
+    return False
+# print(question_2_regex('whbdo453489y5egr'))
+
+with open(prob_3_path, 'r') as prob_3_file:
+    l312 = [i for i in prob_3_file]
+l9 = []
+def question_4(n):
+    x = '\d'
+    pattern = re.compile(x)
+    while pattern.findall(n)!=[]:
+        x+='\d'
+        pattern = re.compile(x)
+    x = x.replace(r'\\d',r'\d')[:-2]
+    mathces = re.compile(x)
+    l9.append(int(''.join(mathces.findall(n))))
+y = list(map(question_4,l312))
+# print(max(l9))
+
+def question_5(n):
+    x = '\d'
+    pattern = re.compile(r'[a-z][a-z][a-z]___[A-Z][A-Z][A-Z]')
+    mathces = pattern.findall(n)
+    print(mathces)
+question_5('dvw___ERTetrbwedfs')
